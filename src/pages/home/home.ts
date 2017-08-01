@@ -1,14 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {TaskService} from '../services/task.service';
+import {Task} from '../models/task.model';
+import {TaskDetailPage} from '../task-detail/task-detail'
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [TaskService]
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  tasks: Task[];
 
-  constructor(public navCtrl: NavController) {
+  constructor(private navCtrl: NavController
+  , private taskService : TaskService) {
 
   }
 
+  ngOnInit(){
+    this.tasks = this.taskService.getNewTasks();
+  }
+
+  showTask(task){
+    console.log('open - ', task);
+    this.navCtrl.push(TaskDetailPage);
+  }
+ 
 }
