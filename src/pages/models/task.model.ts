@@ -1,5 +1,5 @@
 export class Task{
-    id: string;
+    id: number;
     authorId: string;
     avatar?: string;
     nickname: string;

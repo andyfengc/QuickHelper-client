@@ -14,6 +14,41 @@
 
 
 <ion-content padding>
-  details...
-  <button>click me 2</button>
+  <ion-list>
+
+  <ion-item>
+    <ion-label >标题</ion-label>
+    <ion-input type="text" value="{{task.title}}"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>要求</ion-label>
+    <ion-input type="text" value="{{task.content}}" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>报价</ion-label>
+    <ion-input type="text" value="{{task.price}}" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>时间</ion-label>
+    <ion-input type="text" value="{{task.endTime | date}}" ></ion-input>
+  </ion-item>
+
+</ion-list>
+
+<ion-list>
+  <ion-item *ngFor="let message of messages" class="messages other time span">
+    {{message.text}}
+  </ion-item>
+</ion-list>
+
+<ion-footer>
+
+   <ion-input type="text" placeholder="Enter message" [(ngModel)]="text"></ion-input>
+  <button ion-button block (click)="send(text)">
+    Send
+  </button> 
+</ion-footer>
 </ion-content>

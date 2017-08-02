@@ -1,9 +1,9 @@
 export class Message{
-    id: string;
-    senderId: string;
-    receiverId: string;
-    taskId: string;
-    parentMessageId: string;
-    message: string;
+    id: number;
+    senderId: number;
+    receiverId: number;
+    taskId: number;
+    parentMessageId: number;
+    text: string;
 
 }

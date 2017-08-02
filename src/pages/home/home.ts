@@ -23,7 +23,9 @@ export class HomePage implements OnInit {
 
   showTask(task){
     console.log('open - ', task);
-    this.navCtrl.push(TaskDetailPage);
+    this.navCtrl.push(TaskDetailPage, {
+      task: task
+    });
   }
  
 }

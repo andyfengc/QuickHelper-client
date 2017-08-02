@@ -9,7 +9,12 @@
 <ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let task of tasks" (click)="showTask(task)">
-      {{ task.title}}
+      <ion-thumbnail item-start><img src="{{task.avatar}}" alt=""></ion-thumbnail>
+      <h2>{{ task.title}} </h2>
+      <h3>{{task.price | currency: 'USD': true}}</h3>
+      <h3 class="pull-right"> <ion-icon name="call"></ion-icon>
+  <ion-icon name="close-circle" right top></ion-icon></h3>       
+
     </button>
   </ion-list>
 </ion-content>
