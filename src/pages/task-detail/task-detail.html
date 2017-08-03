@@ -13,42 +13,55 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
 
-  <ion-item>
-    <ion-label >标题</ion-label>
-    <ion-input type="text" value="{{task.title}}"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>标题</ion-label>
+      <ion-input type="text" value="{{task.title}}"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>要求</ion-label>
-    <ion-input type="text" value="{{task.content}}" ></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>要求</ion-label>
+      <ion-input type="text" value="{{task.content}}"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>报价</ion-label>
-    <ion-input type="text" value="{{task.price}}" ></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>报价</ion-label>
+      <ion-input type="text" value="{{task.price}}"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>时间</ion-label>
-    <ion-input type="text" value="{{task.endTime | date}}" ></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>时间</ion-label>
+      <ion-input type="text" value="{{task.endTime | date}}"></ion-input>
+    </ion-item>
 
-</ion-list>
+  </ion-list>
 
-<ion-list>
-  <ion-item *ngFor="let message of messages" class="messages other time span">
-    {{message.text}}
-  </ion-item>
-</ion-list>
+  <ion-list>
+    <div *ngFor="let message of messages" [ngClass]="{
+    'messages' : true,
+    'other' : isReader(message)
+} ">
+      <div [ngClass]="{
+    'message' : true
+  }">
+        <div [ngClass]="{
+      'messagebox' : !isReader(message),
+    'messagebox2' : isReader(message)
+  }">
+          {{message.text}}
+        </div>
+      </div>
+
+
+    </div>
+  </ion-list>
+</ion-content>
 
 <ion-footer>
-
-   <ion-input type="text" placeholder="Enter message" [(ngModel)]="text"></ion-input>
+  <ion-input type="text" placeholder="Enter message" [(ngModel)]="text" (keyup.enter)="send(text)"></ion-input>
   <button ion-button block (click)="send(text)">
     Send
-  </button> 
+  </button>
 </ion-footer>
-</ion-content>

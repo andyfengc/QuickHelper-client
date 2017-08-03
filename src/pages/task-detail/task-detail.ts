@@ -18,6 +18,10 @@ export class TaskDetailPage implements OnInit {
   task : Task;
   messages: Message[]=[];
   message: string;
+  authorId: number =  1;
+  readerId: number = 2;
+  alternate: boolean = false;
+  text: string;
 
   constructor(private navCtrl: NavController, private navParams: NavParams) {
   }
@@ -28,13 +32,19 @@ export class TaskDetailPage implements OnInit {
   }
 
   send(text){
-    this.messages.push({
+   this.messages.push({
       "id": 0,
-      "senderId" : 0,
-      "receiverId" : 0,
+      "senderId" : this.alternate ? this.authorId : this.readerId,
+      "receiverId" : this.alternate ? this.readerId : this.authorId,
       "parentMessageId": 0,
       "taskId" : 0,
       "text": text
     });
-  }
+    this.alternate = !this.alternate;
+    this.text = "";
+   }
+
+   isReader(message : Message){
+    return this.readerId != message.senderId;
+   }
 }
