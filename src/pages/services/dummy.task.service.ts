@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from '../models/task.model';
+import { ITaskService } from './ITask.service';
 
-export class TaskService {
+export class DummyTaskService implements ITaskService {
     tasks = [{
         "id": 1,
         "authorId": "u1",
@@ -64,8 +65,12 @@ export class TaskService {
         "address": "20 hunterhore cres no"
     }];
 
-    getNewTasks(): Task[] {
+    getAllTasks(): Task[] {
         return this.tasks;
     }
-    
+    getTasks(q: string): Task[] {
+        let tasks = this.tasks.filter(t => t.title.indexOf(q) > -1);
+        return tasks;
+    }
+
 }

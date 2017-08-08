@@ -5,5 +5,5 @@ export class Message{
     taskId: number;
     parentMessageId: number;
     text: string;
-
+    createdTime: Date;
 }

@@ -3,10 +3,28 @@
     <ion-title>
       Quick Helper
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="searchOn = !searchOn">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  
+    <ion-buttons end>
+      <button ion-button (click)="showAddTask()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="search($event)"
+    (ionCancel)="cancelSearch($event)"
+    *ngIf="searchOn">
+</ion-searchbar>
   <ion-list>
     <button ion-item *ngFor="let task of tasks" (click)="showTask(task)">
       <ion-thumbnail item-start><img src="{{task.avatar}}" alt=""></ion-thumbnail>

@@ -1,0 +1,39 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Post a new task</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-list>
+
+        <ion-item>
+            <ion-label>标题</ion-label>
+            <ion-input type="text" [(ngModel)]="task.title" name="title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>要求</ion-label>
+            <ion-input type="text" [(ngModel)]="task.content" name='content'></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>报价</ion-label>
+            <ion-input type="text" [(ngModel)]="task.price" name="price"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>时间</ion-label>
+            <ion-input type="text" [(ngModel)]="task.endTime" name="endTime"></ion-input>
+        </ion-item>
+
+    </ion-list>
+</ion-content>
+
+<ion-footer>
+  <button ion-button block (click)="postTask(task)">
+    Post
+  </button>
+</ion-footer>

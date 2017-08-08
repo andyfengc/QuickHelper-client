@@ -7,7 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>task details</ion-title>
+    <ion-title>Task details </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="accept()">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+     <ion-buttons end>
+      <button ion-button (click)="reject()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+     <ion-buttons end>
+      <button ion-button (click)="hold()">
+        <ion-icon name="hand"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -52,6 +70,7 @@
   }">
           {{message.text}}
         </div>
+        <div class="time other">{{message.createdTime.toLocaleTimeString()}}</div>
       </div>
 
 
