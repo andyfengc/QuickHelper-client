@@ -27,7 +27,7 @@
 </ion-searchbar>
   <ion-list>
     <button ion-item *ngFor="let task of tasks" (click)="showTask(task)">
-      <ion-thumbnail item-start><img src="{{task.avatar}}" alt=""></ion-thumbnail>
+      <ion-thumbnail item-start><img src="{{task.author.avatar}}" alt=""></ion-thumbnail>
       <h2>{{ task.title}} </h2>
       <h3>{{task.price | currency: 'USD': true}}</h3>
       <h3 class="pull-right"> <ion-icon name="call"></ion-icon>
