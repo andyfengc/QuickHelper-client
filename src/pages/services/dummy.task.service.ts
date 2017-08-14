@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../models/task.model';
 import { ITaskService } from './ITask.service';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 export class DummyTaskService implements ITaskService {
     tasks = [{
@@ -65,12 +67,12 @@ export class DummyTaskService implements ITaskService {
         "address": "20 hunterhore cres no"
     }];
 
-    getAllTasks(): Task[] {
-        return this.tasks;
+    getAllTasks(): Observable<Task[]> {
+        return Observable.of(this.tasks);
     }
-    getTasks(q: string): Task[] {
+    getTasks(q: string): Observable<Task[]> {
         let tasks = this.tasks.filter(t => t.title.indexOf(q) > -1);
-        return tasks;
+        return Observable.of(tasks);
     }
 
 }

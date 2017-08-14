@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DummyTaskService } from '../services/dummy.task.service';
+import {TaskService } from '../services/task.service';
 import { Task } from '../models/task.model';
 import { TaskDetailPage } from '../task-detail/task-detail';
 import {TaskPage} from '../task/task.component';
@@ -8,7 +9,7 @@ import {TaskPage} from '../task/task.component';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [DummyTaskService]
+  providers: [TaskService]
 })
 export class HomePage implements OnInit {
   tasks: Task[];
@@ -17,12 +18,17 @@ export class HomePage implements OnInit {
   searchTerm: string;
 
   constructor(private navCtrl: NavController
-    , private taskService: DummyTaskService) {
+    , private taskService: TaskService) {
 
   }
 
   ngOnInit() {
-    this.tasks = this.taskService.getAllTasks();
+    this.taskService.getAllTasks()
+    .subscribe(data => {
+      console.log(data);
+      this.tasks = data
+    });
+    // this.tasks = this.taskService.getAllTasks();
   }
 
   showTask(task) {
@@ -34,10 +40,14 @@ export class HomePage implements OnInit {
 
   search(event) {
     if (!this.searchTerm) {
-      this.tasks = this.taskService.getAllTasks();
+      // this.tasks = this.taskServic.getAllTasks();
+      this.taskService.getAllTasks()
+    .subscribe(data => this.tasks = data);
     }
     else {
-      this.tasks = this.taskService.getTasks(this.searchTerm);
+      this.taskService.getTasks(this.searchTerm)
+      .subscribe(data => this.tasks = data);
+      // this.tasks = this.taskService.getTasks(this.searchTerm);
     }
   }
 

@@ -1,6 +1,7 @@
 import { Task } from '../models/task.model';
+import {Observable} from 'rxjs/Observable';
 
 export interface ITaskService{
-    getAllTasks(): Task[];
-    getTasks(q : string): Task[];
+    getAllTasks(): Observable<Task[]>;
+    getTasks(q : string): Observable<Task[]>;
 }
